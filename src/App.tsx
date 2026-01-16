@@ -8,6 +8,15 @@ const App: React.FC = () => {
   const [level, setLevel] = useState<string | null>(null);
   const [resetGame, setResetGame] = useState<boolean>(false); // trigger reset
   const [resetMessage, setResetMessage] = useState<string>("");
+  const [toastMessage, setToastMessage] = useState<string>("");
+
+
+  const showToast = (message: string) => {
+    setToastMessage(message);
+    setTimeout(() => {
+      setToastMessage("");
+    }, 2000);
+  };
 
   const handleRestart = () => {
     // trigger gameboard reset
@@ -29,6 +38,8 @@ const App: React.FC = () => {
 
   return (
     <div className="app-container">
+      {toastMessage && <div className="toast">{toastMessage}</div>}
+
       {/* START SCREEN */}
       {step === "start" && (
         <div>
@@ -51,7 +62,7 @@ const App: React.FC = () => {
           <button
             onClick={() => {
               if (playerName.trim()) setStep("level");
-              else alert("Please enter your name!");
+              else showToast("⚠️ Please enter your name!");
             }}
           >
             Next

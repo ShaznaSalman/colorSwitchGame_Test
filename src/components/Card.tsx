@@ -10,20 +10,21 @@ const Card: React.FC<CardProps> = ({ color, isFlipped, onClick, isBomb }) => {
   const style: React.CSSProperties = {
     width: "50px",
     height: "50px",
-    backgroundColor: isFlipped ? color : "#333",
+    backgroundColor: isFlipped ? color : "#444",
     borderRadius: "6px",
     cursor: "pointer",
     transition: "0.3s",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    fontSize: "20px",
+    fontSize: "22px",
     color: "white",
+    fontWeight: "bold",
   };
 
   return (
     <div style={style} onClick={onClick}>
-      {isFlipped && isBomb && "💣"}
+      {isFlipped ? (isBomb ? "💣" : "") : "?"}
     </div>
   );
 };
